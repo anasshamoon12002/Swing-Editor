@@ -11,7 +11,7 @@ public class GUI extends JFrame implements ActionListener
     static JScrollPane editor;
     static JMenuBar menuBar;
     static JMenu file, edit, fontStyle, fontFamily;
-    static JMenuItem newFile, openFile, saveFile, exit, color, fontSize;
+    static JMenuItem newFile, openFile, saveFile, saveAsFile, exit, color, fontSize;
     static JCheckBoxMenuItem bold, italics;
     static JRadioButtonMenuItem[] radioButtons;
     static ButtonGroup radioGroup;
@@ -39,6 +39,9 @@ public class GUI extends JFrame implements ActionListener
 
         saveFile = new JMenuItem("Save");
         saveFile.addActionListener(new SaveFile());
+
+        saveAsFile = new JMenuItem("Save As");
+        saveAsFile.addActionListener(new SaveAsFile());
 
         exit = new JMenuItem("Close");
         exit.addActionListener(this);
@@ -83,6 +86,7 @@ public class GUI extends JFrame implements ActionListener
         file.add(newFile);
         file.add(openFile);
         file.add(saveFile);
+        file.add(saveAsFile);
         file.add(exit);
 
         edit.add(fontStyle);
