@@ -10,15 +10,23 @@ public class FontSize implements ActionListener
     {
         try
         {
-            int val = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the font size", "12"));
+            String val = JOptionPane.showInputDialog(null, "Enter the font size", "12");
 
-            if(val < 1)
+            if(val == null)
+            {
+                return;
+            }
+
+            int size = Integer.parseInt(val);
+
+            if(size < 1)
             {
                 throw new Exception();
             }
 
+            GUI.textPane.setFont(new Font(GUI.textPane.getFont().toString(), GUI.textPane.getFont().getStyle(), size));
 
-            GUI.textPane.setFont(new Font(GUI.textPane.getFont().toString(), GUI.textPane.getFont().getStyle(), val));
+
         }
         catch(Exception ex)
         {
