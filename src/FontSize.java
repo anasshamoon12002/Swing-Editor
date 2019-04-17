@@ -8,8 +8,21 @@ public class FontSize implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        int val = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the font size", "12"));
+        try
+        {
+            int val = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the font size", "12"));
 
-        GUI.textPane.setFont(new Font(GUI.textPane.getFont().toString(), GUI.textPane.getFont().getStyle(), val));
+            if(val < 1)
+            {
+                throw new Exception();
+            }
+
+
+            GUI.textPane.setFont(new Font(GUI.textPane.getFont().toString(), GUI.textPane.getFont().getStyle(), val));
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, "Value Must be a Positive Integer", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
