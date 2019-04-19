@@ -1,7 +1,9 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URLConnection;
 
 public class GUI extends JFrame implements ActionListener
 {
@@ -22,7 +24,7 @@ public class GUI extends JFrame implements ActionListener
     {
 
         textPane = new JTextPane();
-        textPane.setFont(new Font("Arial", textPane.getFont().getStyle(), 12));
+        textPane.setFont(new Font("Arial", textPane.getFont().getStyle(), 14));
 
         editor = new JScrollPane(textPane);
 
@@ -32,18 +34,28 @@ public class GUI extends JFrame implements ActionListener
         edit = new JMenu("Edit");
 
         newFile = new JMenuItem("New");
+        newFile.setIcon(resizedImageIcon("Icons/NewFile.png"));
+        newFile.setIconTextGap(10);
         newFile.addActionListener(new NewFile());
 
         openFile = new JMenuItem("Open");
+        openFile.setIcon(resizedImageIcon("Icons/OpenFile.png"));
+        openFile.setIconTextGap(10);
         openFile.addActionListener(new OpenFile());
 
         saveFile = new JMenuItem("Save");
+        saveFile.setIcon(resizedImageIcon("Icons/Save.png"));
+        saveFile.setIconTextGap(10);
         saveFile.addActionListener(new SaveFile());
 
         saveAsFile = new JMenuItem("Save As");
+        saveAsFile.setIcon(resizedImageIcon("Icons/SaveAs.png"));
+        saveAsFile.setIconTextGap(10);
         saveAsFile.addActionListener(new SaveAsFile());
 
-        exit = new JMenuItem("Close");
+        exit = new JMenuItem("Exit");
+        exit.setIcon(resizedImageIcon("Icons/Exit.png"));
+        exit.setIconTextGap(10);
         exit.addActionListener(this);
 
         fontStyle = new JMenu("Font Style");
@@ -79,7 +91,6 @@ public class GUI extends JFrame implements ActionListener
         fontSize = new JMenuItem("Font Size");
         fontSize.addActionListener(new FontSize());
 
-
         fontStyle.add(bold);
         fontStyle.add(italics);
 
@@ -87,6 +98,7 @@ public class GUI extends JFrame implements ActionListener
         file.add(openFile);
         file.add(saveFile);
         file.add(saveAsFile);
+        file.addSeparator();
         file.add(exit);
 
         edit.add(fontStyle);
@@ -100,7 +112,8 @@ public class GUI extends JFrame implements ActionListener
         setJMenuBar(menuBar);
         add(editor);
 
-
+        setIconImage(new ImageIcon(getClass().getResource("Icons/FrameIcon.png")).getImage());
+        setTitle("Swing Editor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize( 750, 550);
         setLocationRelativeTo(null);
@@ -114,6 +127,19 @@ public class GUI extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         System.exit(0);
+    }
+
+
+    private ImageIcon resizedImageIcon(String imagePath)
+    {
+
+        Image image = new ImageIcon(getClass().getResource(imagePath)).getImage();
+
+        image = image.getScaledInstance(17, 18, Image.SCALE_SMOOTH);
+
+        ImageIcon icon = new ImageIcon(image);
+
+        return icon;
     }
 
 

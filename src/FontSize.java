@@ -10,7 +10,7 @@ public class FontSize implements ActionListener
     {
         try
         {
-            String val = JOptionPane.showInputDialog(null, "Enter the font size", "12");
+            String val = JOptionPane.showInputDialog(null, "Enter the font size", "14");
 
             if(val == null)
             {
