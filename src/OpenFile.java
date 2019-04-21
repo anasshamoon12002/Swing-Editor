@@ -15,7 +15,7 @@ public class OpenFile implements ActionListener
         {
             JFileChooser fileChooser = new JFileChooser();
 
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(null, "txt", "html", "css", "js", "xml");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(null, "txt", "html", "css", "js", "xml", "json");
 
             fileChooser.setFileFilter(filter);
 

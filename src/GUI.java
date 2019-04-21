@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class GUI extends JFrame implements ActionListener
 {
@@ -12,12 +14,10 @@ public class GUI extends JFrame implements ActionListener
     static JScrollPane editor;
     static JMenuBar menuBar;
     static JMenu file, edit, fontStyle, fontFamily;
-    static JMenuItem newFile, openFile, saveFile, saveAsFile, exit, color, fontSize;
+    static JMenuItem newFile, openFile, saveFile, saveAsFile, exit, print, color, fontSize;
     static JCheckBoxMenuItem bold, italics;
     static JRadioButtonMenuItem[] radioButtons;
     static ButtonGroup radioGroup;
-
-    int[] sizeArr = {10, 12, 14, 16};
 
     public GUI()
     {
@@ -34,27 +34,38 @@ public class GUI extends JFrame implements ActionListener
 
         newFile = new JMenuItem("New");
         newFile.setIcon(resizedImageIcon("Icons/NewFile.png"));
-        newFile.setIconTextGap(10);
+        //newFile.setIconTextGap(10);
+        newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
         newFile.addActionListener(new NewFile());
 
         openFile = new JMenuItem("Open");
         openFile.setIcon(resizedImageIcon("Icons/OpenFile.png"));
-        openFile.setIconTextGap(10);
+        //openFile.setIconTextGap(10);
+        openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
         openFile.addActionListener(new OpenFile());
 
         saveFile = new JMenuItem("Save");
         saveFile.setIcon(resizedImageIcon("Icons/Save.png"));
-        saveFile.setIconTextGap(10);
+        //saveFile.setIconTextGap(10);
+        saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         saveFile.addActionListener(new SaveFile());
 
         saveAsFile = new JMenuItem("Save As");
         saveAsFile.setIcon(resizedImageIcon("Icons/SaveAs.png"));
-        saveAsFile.setIconTextGap(10);
+        //saveAsFile.setIconTextGap(10);
+        saveAsFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK + InputEvent.SHIFT_MASK));
         saveAsFile.addActionListener(new SaveAsFile());
+
+        print = new JMenuItem("Print");
+        print.setIcon(resizedImageIcon("Icons/PrintFile.png"));
+        //print.setIconTextGap(10);
+        print.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+        print.addActionListener(new Print());
 
         exit = new JMenuItem("Exit");
         exit.setIcon(resizedImageIcon("Icons/Exit.png"));
-        exit.setIconTextGap(10);
+        //exit.setIconTextGap(10);
+        exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         exit.addActionListener(this);
 
         fontStyle = new JMenu("Font Style");
@@ -97,6 +108,8 @@ public class GUI extends JFrame implements ActionListener
         file.add(openFile);
         file.add(saveFile);
         file.add(saveAsFile);
+        file.addSeparator();
+        file.add(print);
         file.addSeparator();
         file.add(exit);
 

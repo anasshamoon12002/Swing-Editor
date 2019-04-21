@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Main
 {
@@ -8,6 +9,7 @@ public class Main
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.put("MenuItem.acceleratorForeground", new Color(Color.GRAY.getRGB()));
             GUI g = new GUI();
         }
         catch (Exception e)
